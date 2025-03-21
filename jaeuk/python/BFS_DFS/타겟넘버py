@@ -1,0 +1,35 @@
+from collections import deque
+def solution(numbers, target):
+    answer = 0
+    queue = deque()
+    queue.append([numbers[0],0])
+    queue.append([-1*numbers[0],0])
+    
+    while True:
+        v, idx = queue.popleft()
+        idx += 1
+        if idx >= len(numbers):
+            break
+        queue.append([v + numbers[idx], idx])
+        queue.append([v - numbers[idx], idx])
+    
+    for v, idx in queue:
+        if v == target:
+            answer += 1
+    return answer
+
+
+def solution(numbers, target):
+    leave = [0]
+    for number in numbers:
+        tmp = []
+        for leaf in leave:
+            tmp.append(leaf + number)
+            tmp.append(leaf - number)
+        leave = tmp
+        
+    answer = 0
+    for leaf in leave:
+        if leaf == target:
+            answer += 1
+    return answer
