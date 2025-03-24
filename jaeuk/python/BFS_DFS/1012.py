@@ -15,7 +15,7 @@ def bfs(x, y):
                 graph[nx][ny] = 0
 
 
-t =int(input())
+t = int(input())
 for _ in range(t):
     m, n, k = map(int, input().split())
     graph = [[0] * n for _ in range(m)]
