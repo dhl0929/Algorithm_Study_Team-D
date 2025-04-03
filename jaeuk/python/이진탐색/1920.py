@@ -1,7 +1,7 @@
 def binary_search(start, end, target, total_list):
     while start <= end:
         mid = (start + end) // 2
-        
+
         if total_list[mid] == target:
             print(1)
             return
@@ -18,4 +18,4 @@ m = int(input())
 search_list = list(map(int, input().split()))
 
 for x in search_list:
-    binary_search(0, len(search_list) - 1, x, total_list)
+    binary_search(0, len(total_list) - 1, x, total_list)
