@@ -12,18 +12,33 @@ for _ in range(m):
 
 visited = [False] * (n + 1)
 
-def bfs(graph, visited, start):
-    queue = deque([start])
+
+def dfs(graph, visited, start):
     visited[start] = True
 
-    while queue:
-        v = queue.popleft()
-        visited[v] = True
-
-        for i in graph[v]:
-            if not visited[i]:
-                visited[i] = True
-                queue.append(i)
+    for i in graph[start]:
+        if not visited[i]:
+            visited[i] = True
+            dfs(graph, visited, i)
     return visited
 
-print(sum(bfs(graph, visited, 1)) - 1)
+print(sum(dfs(graph, visited, 1)) - 1)
+
+
+
+
+# def bfs(graph, visited, start):
+#     queue = deque([start])
+#     visited[start] = True
+
+#     while queue:
+#         v = queue.popleft()
+#         visited[v] = True
+
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 visited[i] = True
+#                 queue.append(i)
+#     return visited
+
+# print(sum(bfs(graph, visited, 1)) - 1)
