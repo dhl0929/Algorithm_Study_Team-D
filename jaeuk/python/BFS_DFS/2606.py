@@ -1,27 +1,29 @@
 from collections import deque
-computers = int(input())
-num_pairs = int(input())
-pairs = [[] for _ in range(computers + 1)]
-visited = [False] * (computers + 1)
 
-for _ in range(num_pairs):
+n = int(input())
+m = int(input())
+
+graph = [[] for _ in range(n + 1)]
+
+for _ in range(m):
     a, b = map(int, input().split())
-    pairs[a].append(b)
-    pairs[b].append(a)
+    graph[a].append(b)
+    graph[b].append(a)
 
+visited = [False] * (n + 1)
 
-def bfs(start, pairs):
-    visited[start] = True
+def bfs(graph, visited, start):
     queue = deque([start])
+    visited[start] = True
 
     while queue:
         v = queue.popleft()
+        visited[v] = True
 
-        for i in pairs[v]:
+        for i in graph[v]:
             if not visited[i]:
-                queue.append(i)
                 visited[i] = True
-    
-    return sum(visited) - 1
+                queue.append(i)
+    return visited
 
-print(bfs(1, pairs))
+print(sum(bfs(graph, visited, 1)) - 1)
